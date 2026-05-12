@@ -2,7 +2,7 @@ resource "proxmox_vm_qemu" "kubernetes_node" {
   for_each = local.kubernetes_nodes
 
   name        = each.key
-  desc        = "Kubernetes ${each.value.role} node managed by Terraform"
+  description = "Kubernetes ${each.value.role} node managed by Terraform"
   target_node = coalesce(each.value.target_node, var.target_node)
   vmid        = each.value.vmid
 
@@ -13,9 +13,12 @@ resource "proxmox_vm_qemu" "kubernetes_node" {
   os_type = "cloud-init"
   qemu_os = "l26"
 
-  cores   = each.value.cores
-  sockets = 1
-  memory  = each.value.memory
+  memory = each.value.memory
+
+  cpu {
+    cores   = each.value.cores
+    sockets = 1
+  }
 
   scsihw = "virtio-scsi-pci"
   boot   = "order=scsi0"
@@ -26,12 +29,14 @@ resource "proxmox_vm_qemu" "kubernetes_node" {
         disk {
           size    = each.value.disk_size
           storage = var.storage_pool
+          discard = var.disk_discard
         }
       }
     }
   }
 
   network {
+    id     = 0
     model  = "virtio"
     bridge = var.network_bridge
   }

@@ -1,5 +1,6 @@
 # Terraform
 **/.terraform/
+.terraform.d/
 *.tfstate
 *.tfstate.*
 *.tfvars
@@ -21,6 +22,7 @@ admin.conf
 .kubespray/
 variables/cluster/cluster.env
 variables/cluster/nodes.yaml
+variables/terraform/terraform.env
 
 # Local environment
 .env

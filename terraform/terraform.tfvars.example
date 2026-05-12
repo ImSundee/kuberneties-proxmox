@@ -4,6 +4,7 @@ proxmox_api_token_secret = "replace-with-local-secret"
 target_node              = "pve01"
 template_name            = "debian-13-k8s-template"
 storage_pool             = "local-lvm"
+disk_discard             = true
 network_bridge           = "vmbr0"
 ssh_public_key           = "ssh-ed25519 AAAA... user@example"
 nameserver               = "192.0.2.53"

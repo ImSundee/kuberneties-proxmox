@@ -36,6 +36,12 @@ variable "storage_pool" {
   type        = string
 }
 
+variable "disk_discard" {
+  description = "Enable discard/TRIM support on VM disks so thin-provisioned storage can reclaim unused blocks."
+  type        = bool
+  default     = true
+}
+
 variable "network_bridge" {
   description = "Proxmox bridge for Kubernetes node NICs."
   type        = string
