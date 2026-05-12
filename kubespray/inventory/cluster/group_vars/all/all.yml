@@ -1,0 +1,6 @@
+---
+ansible_user: debian
+ansible_become: true
+
+cluster_name: proxmox-kubernetes
+supplementary_addresses_in_ssl_keys: []

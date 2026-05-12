@@ -1,0 +1,35 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+
+# Kubespray / Kubernetes secrets
+*.retry
+artifacts/
+credentials/
+kubeconfig*
+admin.conf
+
+# Local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

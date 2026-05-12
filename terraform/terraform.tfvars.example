@@ -1,0 +1,47 @@
+proxmox_api_url          = "https://pve.example.net:8006/api2/json"
+proxmox_api_token_id     = "terraform@pve!kubernetes"
+proxmox_api_token_secret = "replace-with-local-secret"
+target_node              = "pve01"
+template_name            = "debian-13-k8s-template"
+storage_pool             = "local-lvm"
+network_bridge           = "vmbr0"
+ssh_public_key           = "ssh-ed25519 AAAA... user@example"
+nameserver               = "192.0.2.53"
+gateway                  = "192.0.2.1"
+dns_domain               = "lab.example.net"
+
+control_plane_nodes = {
+  k8s-cp-01 = {
+    vmid = 2101
+    ip   = "192.0.2.101"
+    cidr = 24
+  }
+  k8s-cp-02 = {
+    vmid = 2102
+    ip   = "192.0.2.102"
+    cidr = 24
+  }
+  k8s-cp-03 = {
+    vmid = 2103
+    ip   = "192.0.2.103"
+    cidr = 24
+  }
+}
+
+worker_nodes = {
+  k8s-worker-01 = {
+    vmid = 2201
+    ip   = "192.0.2.111"
+    cidr = 24
+  }
+  k8s-worker-02 = {
+    vmid = 2202
+    ip   = "192.0.2.112"
+    cidr = 24
+  }
+  k8s-worker-03 = {
+    vmid = 2203
+    ip   = "192.0.2.113"
+    cidr = 24
+  }
+}
