@@ -1,4 +1,3 @@
-<<<<<<< ours
 # Kubernetes on Proxmox
 
 Infrastructure-as-code workspace for building a Kubernetes cluster on Proxmox.
@@ -56,7 +55,3 @@ Activate the environment with:
 ```bash
 source .venv/bin/activate
 ```
-<<<<<<< ours
->>>>>>> theirs
-=======
->>>>>>> theirs
