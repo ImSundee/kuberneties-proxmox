@@ -1,0 +1,15 @@
+control_plane:
+  - name: k8s-cp-01
+    ip: 192.168.0.161
+  - name: k8s-cp-02
+    ip: 192.168.0.162
+  - name: k8s-cp-03
+    ip: 192.168.0.163
+
+workers:
+  - name: k8s-worker-01
+    ip: 192.168.0.171
+  - name: k8s-worker-02
+    ip: 192.168.0.172
+  - name: k8s-worker-03
+    ip: 192.168.0.173

@@ -8,7 +8,24 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 
+wait_for_apt_locks() {
+  local timeout_seconds="${APT_LOCK_WAIT_SECONDS:-600}"
+  local deadline=$((SECONDS + timeout_seconds))
+
+  while fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/lib/apt/lists/lock /var/cache/apt/archives/lock >/dev/null 2>&1; do
+    if [ "${SECONDS}" -ge "${deadline}" ]; then
+      echo "Timed out waiting for apt/dpkg locks."
+      exit 1
+    fi
+    echo "Waiting for apt/dpkg locks to be released..."
+    sleep 5
+  done
+}
+
+wait_for_apt_locks
+
 apt-get update
+wait_for_apt_locks
 apt-get install -y \
   apt-transport-https \
   ca-certificates \

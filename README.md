@@ -8,6 +8,14 @@ The intended flow is:
 2. Provision Kubernetes node VMs from that template with Terraform from this workstation.
 3. Configure Kubernetes with Kubespray from this workstation.
 
+## Next Steps After Template Creation
+
+1. Use Terraform to provision the Kubernetes node VMs from `debian-13-k8s-template`.
+2. Update `variables/cluster/nodes.yaml` with the node names and IPs.
+3. Generate the Kubespray inventory with `./kubespray/scripts/generate-inventory.sh`.
+4. Verify SSH connectivity with `./kubespray/scripts/ping-nodes.sh`.
+5. Deploy Kubernetes with `./kubespray/scripts/run-kubespray.sh`.
+
 ## Repository Layout
 
 ```text
@@ -15,7 +23,8 @@ The intended flow is:
 ├── docs/                  # Project context and runbooks
 ├── golden-image/          # Golden image preparation notes and scripts
 ├── kubespray/             # Kubespray inventory and cluster variables
-└── terraform/             # Proxmox VM provisioning
+├── terraform/             # Proxmox VM provisioning
+└── variables/             # Step-specific local variable examples
 ```
 
 ## Current Phase

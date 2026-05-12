@@ -18,11 +18,16 @@ artifacts/
 credentials/
 kubeconfig*
 admin.conf
+.kubespray/
+variables/cluster/cluster.env
+variables/cluster/nodes.yaml
 
 # Local environment
 .env
 .env.*
 !.env.example
+variables/**/*.env
+!variables/**/*.env.example
 *.pem
 *.key
 id_rsa*
@@ -36,4 +41,3 @@ id_ed25519*
 
 # Python virtual environment
 .venv/
-
