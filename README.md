@@ -1,3 +1,4 @@
+<<<<<<< ours
 # Kubernetes on Proxmox
 
 Infrastructure-as-code workspace for building a Kubernetes cluster on Proxmox.
@@ -36,3 +37,23 @@ All project workflows are intended to run from this repository on an operator wo
 ## Sensitive Values
 
 Do not commit secrets, API tokens, SSH private keys, kubeconfigs, Terraform state, or generated inventories containing credentials. Use local `*.tfvars`, environment variables, or secret management outside Git.
+=======
+# kuberneties-proxmox
+Install kuberneties cluster in proxmox...
+
+## Development Environment
+
+Create or refresh the project virtual environment with:
+
+```bash
+./setup-venv.sh
+```
+
+This creates `.venv`, upgrades core packaging tools, and installs the latest versions of the tools listed in `requirements-dev.txt`.
+
+Activate the environment with:
+
+```bash
+source .venv/bin/activate
+```
+>>>>>>> theirs
