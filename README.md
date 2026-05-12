@@ -56,4 +56,7 @@ Activate the environment with:
 ```bash
 source .venv/bin/activate
 ```
+<<<<<<< ours
+>>>>>>> theirs
+=======
 >>>>>>> theirs

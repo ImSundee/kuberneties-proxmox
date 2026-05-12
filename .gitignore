@@ -1,4 +1,5 @@
 <<<<<<< ours
+<<<<<<< ours
 # Terraform
 **/.terraform/
 *.tfstate
@@ -34,6 +35,9 @@ id_ed25519*
 .idea/
 .vscode/
 *.swp
+=======
+.venv/
+>>>>>>> theirs
 =======
 .venv/
 >>>>>>> theirs
