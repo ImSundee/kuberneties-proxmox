@@ -36,6 +36,12 @@ variable "storage_pool" {
   type        = string
 }
 
+variable "full_clone" {
+  description = "Create full clones instead of linked clones. Linked clones are much faster, but keep the VMs dependent on the template disk."
+  type        = bool
+  default     = false
+}
+
 variable "disk_discard" {
   description = "Enable discard/TRIM support on VM disks so thin-provisioned storage can reclaim unused blocks."
   type        = bool

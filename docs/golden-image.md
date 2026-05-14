@@ -36,7 +36,7 @@ All steps are initiated from an operator workstation. Proxmox shell commands are
 8. The remote workflow attaches the imported disk as `scsi0`.
 9. The remote workflow adds a cloud-init drive.
 10. The remote workflow injects `TEMPLATE_SSH_PUBLIC_KEY_FILE` into the source VM through Proxmox cloud-init.
-11. The remote workflow configures serial console and boot order.
+11. The remote workflow configures boot order.
 12. The script configures the source VM with `TEMPLATE_IP` when set, otherwise DHCP.
 13. The script starts the source VM when `AUTO_PREPARE_TEMPLATE=true`.
 14. The script uses `TEMPLATE_IP` for SSH when set, otherwise discovers the source VM IPv4 address from Proxmox guest-agent data unless `TEMPLATE_SSH_HOST` is set.

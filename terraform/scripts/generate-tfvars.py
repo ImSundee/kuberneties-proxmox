@@ -120,6 +120,7 @@ def main():
         "target_node": terraform_env["TARGET_NODE"],
         "template_name": template_env.get("VM_NAME", "debian-13-k8s-template"),
         "storage_pool": template_env.get("PROXMOX_STORAGE", "local-lvm"),
+        "full_clone": bool_value(terraform_env.get("FULL_CLONE", "false")),
         "disk_discard": bool_value(terraform_env.get("DISK_DISCARD", "true")),
         "network_bridge": template_env.get("BRIDGE", "vmbr0"),
         "ssh_public_key": public_key(key_source),

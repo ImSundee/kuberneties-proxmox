@@ -243,12 +243,13 @@ qm create "${VM_ID}" \
   --cores "${CORES}" \
   --net0 "virtio,bridge=${BRIDGE}" \
   --ostype l26 \
+  --bios ovmf \
+  --machine q35 \
   --agent enabled=1 \
-  --serial0 socket \
-  --vga serial0 \
   --scsihw virtio-scsi-pci
 
 qm importdisk "${VM_ID}" "${IMAGE_FILE}" "${PROXMOX_STORAGE}"
+qm set "${VM_ID}" --efidisk0 "${PROXMOX_STORAGE}:0,efitype=4m,pre-enrolled-keys=0"
 qm set "${VM_ID}" --scsi0 "${PROXMOX_STORAGE}:vm-${VM_ID}-disk-0,discard=on,ssd=1"
 qm set "${VM_ID}" --ide2 "${SNIPPET_STORAGE}:cloudinit"
 qm set "${VM_ID}" --boot order=scsi0
@@ -279,6 +280,7 @@ if [ "${AUTO_PREPARE_TEMPLATE}" = "true" ]; then
   mapfile -t template_shutdown_ssh_args < <(template_ssh_args)
   ssh "${template_shutdown_ssh_args[@]}" "${TEMPLATE_SSH_USER}@${TEMPLATE_SSH_HOST}" "sudo shutdown -h now" || true
   ssh_remote "timeout 300 bash -c 'until qm status ${VM_ID} | grep -q stopped; do sleep 5; done'"
+  ssh_remote "qm set '${VM_ID}' --delete ipconfig0 --delete nameserver --delete searchdomain"
 
   if [ "${AUTO_CONVERT_TEMPLATE}" = "true" ]; then
     ssh_remote "qm template '${VM_ID}'"

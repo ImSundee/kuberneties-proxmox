@@ -7,11 +7,13 @@ resource "proxmox_vm_qemu" "kubernetes_node" {
   vmid        = each.value.vmid
 
   clone      = var.template_name
-  full_clone = true
+  full_clone = var.full_clone
 
   agent   = 1
   os_type = "cloud-init"
   qemu_os = "l26"
+  bios    = "ovmf"
+  machine = "q35"
 
   memory = each.value.memory
 
@@ -42,10 +44,12 @@ resource "proxmox_vm_qemu" "kubernetes_node" {
   }
 
   ciuser       = var.cloud_init_user
+  ciupgrade    = false
   sshkeys      = var.ssh_public_key
   nameserver   = var.nameserver
   searchdomain = var.dns_domain
   ipconfig0    = "ip=${each.value.ip}/${each.value.cidr},gw=${var.gateway}"
+  skip_ipv6    = true
 
   tags = "kubernetes;${each.value.role};terraform"
 }

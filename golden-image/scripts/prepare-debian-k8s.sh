@@ -45,6 +45,11 @@ apt-get install -y \
 systemctl enable qemu-guest-agent
 systemctl enable ssh
 systemctl enable iscsid
+for unit in cloud-init-local cloud-init cloud-config cloud-final; do
+  if systemctl list-unit-files "${unit}.service" --no-legend | grep -q "^${unit}.service"; then
+    systemctl enable "${unit}.service"
+  fi
+done
 
 swapoff -a || true
 sed -i.bak '/\sswap\s/s/^/#/' /etc/fstab
@@ -66,8 +71,9 @@ EOF
 sysctl --system
 
 apt-get clean
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-cloud-init clean --logs
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/lib/dhcp/* /var/lib/systemd/network/* /var/lib/cloud/*
+rm -f /etc/cloud/cloud.cfg.d/*disable-network-config*
+cloud-init clean --logs --machine-id
 truncate -s 0 /etc/machine-id
 rm -f /var/lib/dbus/machine-id
 ln -sf /etc/machine-id /var/lib/dbus/machine-id

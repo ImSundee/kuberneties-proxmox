@@ -36,6 +36,8 @@ The SSH public key value can be a public key file path or inline public key cont
 
 Set `DISK_DISCARD=true` to enable discard/TRIM support for VM disks. This allows supported thin-provisioned Proxmox storage backends to reclaim unused guest blocks.
 
+Set `FULL_CLONE=false` to use linked clones. Linked clones are much faster because Proxmox does not copy the full template disk for every node, but the generated VMs remain dependent on the template disk. Set `FULL_CLONE=true` when nodes need fully independent disks.
+
 ## Commands
 
 ```bash
